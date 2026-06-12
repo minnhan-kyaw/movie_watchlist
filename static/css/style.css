@@ -63,7 +63,7 @@ h2 {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    box-sizing: border-box; /* နေရာလွတ်ကို အလွန်အကျွံမဖြစ်စေရန် */
+    box-sizing: border-box; 
 }
 
 
