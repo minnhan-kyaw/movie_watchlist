@@ -22,3 +22,13 @@ def init_db():
     conn.commit()
     conn.close()
 
+
+def delete_movie(movie_id):
+    conn = get_db_connection()
+    conn.execute('DELETE FROM movies WHERE id= ?', (movie_id,))
+    conn.commit()
+    conn.close()
+    
+
+
+

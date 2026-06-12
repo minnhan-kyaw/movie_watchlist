@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from business_logic.movie_service import add_movie_service, get_all_movies_service, get_db_connection
+from data_access.movie_repository import delete_movie
 
 movies_bp = Blueprint('movies', __name__)
 
@@ -21,3 +22,8 @@ def create():
         add_movie_service(title, genre, int(release_year),int(rating), status , notes)
         return redirect(url_for('movies.index'))
     return render_template('create.html')
+
+@movies_bp.route('/delete/<int:movie_id>', methods = ['POST'])
+def delete(movie_id):
+    delete_movie(movie_id)
+    return redirect(url_for('movies.index'))
