@@ -25,3 +25,94 @@
     text-decoration: none;
     border-radius: 5px;
 }
+
+
+
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: #333;
+    font-family: sans-serif;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* နေရာလွတ်ကို အလွန်အကျွံမဖြစ်စေရန် */
+}
+
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-save {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-save:hover {
+    background-color: #0056b3;
+}
+
+.btn-cancel {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f8f9fa;
+}
+
+
+
+.back-link {
+    text-decoration: none;  
+    color: #666;            
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.back-link:hover {
+    color: #000;           
+}
+
+.rating-stars {
+    color: #f39c12;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}

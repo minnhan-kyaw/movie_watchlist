@@ -15,9 +15,14 @@
                 <h5 class="card-title">{{ movie['title'] }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ movie['genre'] }} • {{ movie['release_year'] }}</h6>
                 <p>
-                    Rating:
-                     {% for i in range(movie['rating'] | int) %}
-                     {% endfor %}
+                    Rating: 
+                    {% if movie['rating'] %}
+                        {% for i in range(movie['rating'] | int) %}
+                            <span style="color: #f39c12;">★</span>
+                        {% endfor %}
+                    {% else %}
+                        <span>No rating yet</span>
+                    {% endif %}
                 </p>
                 <p class="card-text">{{ movie['notes'] }}</p>
                 
