@@ -30,12 +30,12 @@
             </div>
             <div>
                 <form action="{{ url_for('movies.delete', movie_id=movie.id) }}" method="POST">
-                    <button type=" submit" onclick="return confirm('Are you sure want to delete this movie?')">
+                    <button type=" submit" class="btn-action btn-delete" onclick="return confirm('Are you sure want to delete this movie?')">
                         Delete
                     </button>
                 </form>
-                <a href="/movies/view/{{ movie['id'] }}">View</a>
-                <a href="/movies/edit/{{ movie['id'] }}">Edit</a>
+                <a href="/movies/view/{{ movie['id'] }}" class="btn-action btn-view">View</a>
+                <a href="/movies/edit/{{ movie['id'] }}"class="btn-action btn-edit">Edit</a>
             </div>
         </div>
     </div>
