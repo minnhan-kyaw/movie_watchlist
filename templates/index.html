@@ -6,7 +6,7 @@
 </head>
 <body>
     <h2>My Movie Watchlist</h2>
-    <a href="{{ url_for('movies.create') }}" > + Add new movie</a>
+    <a href="{{ url_for('movies.create') }}" class="btn-action btn-add-movie"> + Add new movie</a>
     <div class="movie-grid">
     {% for movie in movies %}
     <div class="movie-card">

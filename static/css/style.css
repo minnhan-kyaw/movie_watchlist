@@ -30,6 +30,7 @@
     display: inline-block;
 }
 
+.btn-add-movie {background-color:rgb(35, 25, 111) ; color: #f9f7f7;}
 .btn-view { background-color: #3498db; color:white; }
 .btn-edit { background-color: #3a0bbd; color:black; }
 .btn-delete { background-color: #e74c3c; color:white; }
@@ -107,14 +108,19 @@ h2 {
 }
 
 .btn-cancel {
-    padding: 10px 20px;
+    background-color: #ed516b;
     text-decoration: none;
-    color: #666;
-    border: 1px solid #ddd;
+    color: white;
+    padding: 10px 20px;
+    border: none;
     border-radius: 6px;
-    background: #f8f9fa;
+    cursor: pointer;
+    font-size: 16px;
 }
 
+.btn-cancel:hover {
+    background-color: #872828;
+}
 
 
 .back-link {
