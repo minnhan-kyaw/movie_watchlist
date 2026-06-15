@@ -1,4 +1,5 @@
 import sqlite3
+import os
 
 DATABASE = 'movie.db'
 
@@ -29,6 +30,15 @@ def delete_movie(movie_id):
     conn.commit()
     conn.close()
     
+def get_movie_by_id(movie_id):
+    conn = get_db_connection()
+    row = conn.execute('SELECT id, title, genre, release_year, rating, status, notes FROM movies WHERE id = ?').fetchone()
+    conn.close()
 
+    if row:
+        movie_data = dict(row)
+        movie_data['year'] = movie_data['release_year']
+        return movie_data
+    return None
 
 
