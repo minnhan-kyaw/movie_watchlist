@@ -40,10 +40,8 @@
                         <div class="movie-card-details">
                             
                             
-                            <div class="status-badge-row">
-                                <span class="status-badge status-{{ movie.status | lower }}">
-                                    {{ movie.status }}
-                                </span>
+                            <div class="movie-item-stars">
+                                <span class="stars-text">{{ movie.get_stars_display() }}</span>
                             </div>
 
                             <h2 class="movie-item-title">{{ movie.title }}</h2>
@@ -59,7 +57,6 @@
                                 {% endfor %}
                             </div>
 
-                        
                             <div class="card-action-links">
                                 <a href="{{ url_for('movies.view_movie', movie_id=movie.id) }}" class="btn-action-view">
                                     <i class="fa-regular fa-eye"></i> View
@@ -68,14 +65,12 @@
                                     <i class="fa-regular fa-pen-to-square"></i> Edit
                                 </a>
                                 
-                                
                                 <form action="{{ url_for('movies.delete', movie_id=movie.id) }}" method="POST" class="delete-form" onsubmit="return confirm('Are you sure want to delete this movie.');">
                                     <button type="submit" class="btn-action-delete">
                                         <i class="fa-regular fa-trash-can"></i> Delete
                                     </button>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 {% endfor %}
@@ -86,7 +81,6 @@
                 </div>
             {% endif %}
         </div>
-
     </div>
 
     <script>

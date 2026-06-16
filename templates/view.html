@@ -31,20 +31,15 @@
                 <div class="grid-item">
                     <h2 class="section-label">RATING</h2>
                     <div class="rating-stars">
-                        {% for i in range(1, 6) %}
-                            {% if i <= movie.rating %}
-                                <i class="fa-solid fa-star active-star"></i>
-                            {% else %}
-                                <i class="fa-regular fa-star inactive-star"></i>
-                            {% endif %}
-                        {% endfor %}
+                        {{ movie.get_stars_html() | safe }}
                     </div>
                 </div>
+                
 
                 <div class="grid-item">
                     <h2 class="section-label">STATUS</h2>
                     <div class="status-value">
-                        {{ movie.status }}
+                        <span class="status-badge {{ movie.get_status_class() }}">{{ movie.status }}</span>
                     </div>
                 </div>
             </div>
