@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from business_logic.movie_service import (
     add_movie_service, 
     get_all_movies_service, 
@@ -16,22 +16,56 @@ def index():
 @movies_bp.route('/movies/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
-        title = request.form.get('title')
-        genre = request.form.get('genre')
-        release_year = request.form.get('release_year')
-        status = request.form.get('status')
-        rating = request.form.get('rating')
-        notes = request.form.get('notes')
+        title = request.form.get('title', '').strip()
+        genre = request.form.get('genre', '').strip()
+        release_year = request.form.get('release_year', '').strip()
+        status = request.form.get('status', '').strip()
+        rating = request.form.get('rating', '').strip()
+        notes = request.form.get('notes', '').strip()
+
         
+        if not title:
+            flash("Movie Title is required.", "error")
+            return render_template('create.html')
+        
+        if len(title) > 100:
+            flash("Movie Title must be under 100 characters.", "error")
+            return render_template('create.html')
+
+        if not genre:
+            flash("Please select a Genre.", "error")
+            return render_template('create.html')
+
+        if not release_year:
+            flash("Release Year is required.", "error")
+            return render_template('create.html')
+
         try:
-            release_year_val = int(release_year) if release_year else None
+            release_year_val = int(release_year)
+            if release_year_val < 1888 or release_year_val > 2026:
+                flash("Release Year must be between 1888 and 2026.", "error")
+                return render_template('create.html')
         except ValueError:
-            release_year_val = None
-            
+            flash("Release Year must be a valid number.", "error")
+            return render_template('create.html')
+
         try:
-            rating_val = int(rating) if rating else None
+            rating_val = int(rating)
+            if rating_val < 1 or rating_val > 5:
+                flash("Rating must be between 1 and 5 Stars.", "error")
+                return render_template('create.html')
         except ValueError:
-            rating_val = None
+            flash("Invalid rating value.", "error")
+            return render_template('create.html')
+
+        valid_statuses = ["To-Watch", "Watching", "Watched"]
+        if status not in valid_statuses:
+            flash("Invalid status selection.", "error")
+            return render_template('create.html')
+
+        if len(notes) > 500:
+            flash("Notes must be under 500 characters.", "error")
+            return render_template('create.html')
 
         add_movie_service(
             title=title,

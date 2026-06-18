@@ -21,6 +21,22 @@
             </a>
         </header>
 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert-container" style="max-width: 1200px; margin: 0 auto 20px auto; padding: 0 40px;">
+                {% for category, message in messages %}
+                    <div class="alert-box alert-{{ category }}">
+                        <span class="alert-icon">
+                            {% if category == 'success' %}✅{% else %}⚠️{% endif %}
+                        </span>
+                        <span class="alert-message">{{ message }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+
         <div class="filter-tabs">
             <button class="tab-btn active" data-filter="all">All</button>
             <button class="tab-btn" data-filter="to-watch">To-Watch</button>

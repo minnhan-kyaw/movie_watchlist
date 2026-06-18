@@ -5,6 +5,8 @@ from endpoint.movies import movies_bp
  
 app = Flask(__name__)
 
+app.secret_key = 'my_app_key_2006'
+
 init_db()
 
 app.register_blueprint(movies_bp)
