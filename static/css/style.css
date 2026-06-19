@@ -169,6 +169,7 @@ body {
     box-sizing: border-box;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: opacity 1s ease, transform 1s ease;
 }
 
 .alert-icon {
@@ -182,7 +183,7 @@ body {
 }
 
 
-.alert-error {
+.alert-danger {
     background-color: #fde8e8;
     color: #9b1c1c;
     border: 1px solid #f8b4b4;
@@ -706,5 +707,24 @@ body.bg-gray-light {
     font-weight: 500;
 }
 
+   
 
+.status-badge-text {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: sans-serif;
+    background: none !important;      
+    padding: 0 !important;            
+    border: none !important;          
+    display: inline-block;
+}
 
+.status-to-watch {
+    color: #3b82f6 !important; 
+}
+.status-watching {
+    color: #f59e0b !important; 
+}
+.status-watched {
+    color: #10b981 !important; 
+}

@@ -7,9 +7,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="bg-dark">
 
-    <div class="page-container">
+<body class="bg-dark" style="display: flex; flex-direction: column; min-height: 100vh; justify-content: flex-start; align-items: stretch; margin: 0; padding: 0;">
+
+    <header class="watchlist-header" style="background: white; padding: 15px 40px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; flex-shrink: 0;">
+        <div class="logo-area" style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 24px; color: #3b82f6;">🎬</span>
+            <h1 class="main-title" style="font-size: 20px; font-weight: 700; color: #1e293b; margin: 0; font-family: sans-serif;">Movie Watchlist</h1>
+        </div>
+        <a href="{{ url_for('movies.create') }}" class="add-movie-btn" style="background: #3b82f6; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 5px; font-family: sans-serif;">
+            + Add Movie
+        </a>
+    </header>
+
+    <div class="page-container" style="display: flex; justify-content: center; align-items: center; flex-grow: 1; padding: 40px 20px; box-sizing: border-box;">
         <div class="movie-card">
             <div class="top-nav">
                 <a href="{{ url_for('movies.index') }}" class="back-to-watchlist">
@@ -23,7 +34,7 @@
                 </div>
                 <div class="movie-title-section">
                     <h1 class="movie-title">{{ movie.title }}</h1>
-                    <p class="movie-meta">{{ movie.genre }} · {{ movie.year }}</p>
+                    <p class="movie-meta">{{ movie.genre }} . {{ movie.year }}</p>
                 </div>
             </div>
 
@@ -34,7 +45,7 @@
                         {{ movie.get_stars_html() | safe }}
                     </div>
                 </div>
-                
+
                 <div class="grid-item">
                     <h2 class="section-label">STATUS</h2>
                     <div class="status-value">
@@ -50,10 +61,9 @@
 
             <div class="card-footer">
                 <a href="{{ url_for('movies.index') }}" class="bottom-back-btn">
-                     Back
+                    Back
                 </a>
             </div>
-
         </div>
     </div>
 

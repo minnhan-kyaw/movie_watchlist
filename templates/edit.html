@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-gray-light">
+
+    <header class="watchlist-header" style="background: white; padding: 15px 40px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <div class="logo-area" style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 24px; color: #3b82f6;">🎬</span>
+            <h1 class="main-title" style="font-size: 20px; font-weight: 700; color: #1e293b; margin: 0; font-family: sans-serif;">Movie Watchlist</h1>
+        </div>
+        <a href="{{ url_for('movies.create') }}" class="add-movie-btn" style="background: #3b82f6; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 5px; font-family: sans-serif;">
+            + Add Movie
+        </a>
+    </header>
+
+    <div class="page-container">
+        <div class="movie-card">
+            <a href="{{ url_for('movies.index') }}" class="back-link">
+                &larr; Back to Watchlist
+            </a>
+            <div class="card-header-title">
+                <span class="header-icon">📝</span>
+                <span>Edit Movie</span>
+            </div>
+
+            <div id="client-alert-container" class="alert-container"></div>
+            
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="alert-container">
+                        {% for category, message in messages %}
+                            <div class="alert-box alert-{{ category }}">
+                                <span class="alert-icon">
+                                    {% if category == 'danger' %}⚠️{% else %}✅{% endif %}
+                                </span>
+                                <span class="alert-message">{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('movies.edit', movie_id=movie.id) }}" method="POST">
+                {% include '_form_fields.html' %}
+            </form>
+        </div> 
+    </div> 
+
+</body>
+</html>

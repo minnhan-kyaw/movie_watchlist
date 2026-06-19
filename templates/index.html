@@ -60,7 +60,12 @@
                                 <span class="stars-text">{{ movie.get_stars_display() }}</span>
                             </div>
 
-                            <h2 class="movie-item-title">{{ movie.title }}</h2>
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+                                <h2 class="movie-item-title" style="margin: 0; flex: 1;padding-right: 15px;">{{ movie.title }}</h2>
+                                <span class="status-badge-text {{ movie.get_status_class() if    movie.get_status_class else '' }}">
+                                    {{ movie.status }}
+                                </span>
+                            </div>
                             <p class="movie-item-meta">{{ movie.release_year }} · {{ movie.genre }}</p>
 
                             <div class="movie-item-stars">
@@ -77,7 +82,7 @@
                                 <a href="{{ url_for('movies.view_movie', movie_id=movie.id) }}" class="btn-action-view">
                                     <i class="fa-regular fa-eye"></i> View
                                 </a>
-                                <a href="#" class="btn-action-edit">
+                                <a href="{{ url_for('movies.edit', movie_id=movie.id) }}" class="btn-action-edit">
                                     <i class="fa-regular fa-pen-to-square"></i> Edit
                                 </a>
                                 
@@ -98,14 +103,16 @@
             {% endif %}
         </div>
     </div>
-
     <script>
+        // Tab Filter Logic
         document.querySelectorAll('.tab-btn').forEach(button => {
             button.addEventListener('click', () => {
                 document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
+
                 const filterValue = button.getAttribute('data-filter');
                 const movieCards = document.querySelectorAll('.movie-item-card');
+
                 movieCards.forEach(card => {
                     const cardStatus = card.getAttribute('data-status');
                     if (filterValue === 'all' || cardStatus === filterValue) {
@@ -116,7 +123,20 @@
                 });
             });
         });
-    </script>
 
+        document.addEventListener('DOMContentLoaded', () => {
+            const alertBoxes = document.querySelectorAll('.alert-box');
+            alertBoxes.forEach(alert => {
+                setTimeout(() => {
+                    alert.style.opacity = '0';
+                    alert.style.transform = 'translateY(-10px)';
+                    
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 500); 
+                }, 3000); 
+            });
+        });
+    </script>
 </body>
 </html>

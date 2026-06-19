@@ -1,5 +1,5 @@
 from data_access.movie_repository import get_db_connection
-from models.movie import Movie  
+from models.movie import Movie
 
 def add_movie_service(title, genre, release_year, rating, status, notes):
     conn = get_db_connection()
@@ -16,11 +16,20 @@ def get_all_movies_service():
     rows = conn.execute('SELECT * FROM movies').fetchall()
     conn.close()
     return [Movie.from_row(row) for row in rows]
-    
 
 def get_movies_by_id_service(movie_id):
     conn = get_db_connection()
     row = conn.execute('SELECT * FROM movies WHERE id = ?', (movie_id,)).fetchone()
     conn.close()
     return Movie.from_row(row) if row else None
-    
+
+def update_movie_service(movie_id, title, genre, release_year, rating, status, notes):
+    conn = get_db_connection()
+    sql = """
+        UPDATE movies
+        SET title = ?, genre = ?, release_year = ?, rating = ?, status = ?, notes = ?
+        WHERE id = ?
+    """
+    conn.execute(sql, (title, genre, int(release_year), int(rating), status, notes, movie_id))
+    conn.commit()
+    conn.close()
